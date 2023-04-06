@@ -1,0 +1,19 @@
+.active {
+  color: red;
+}
+.contact-us-logos {
+  width: 35px;
+  margin-left: 10px;
+}
+.links-main-container {
+  width: 250px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  left: 50px;
+  bottom: 0;
+  top: 88px;
+  background-color: white;
+}

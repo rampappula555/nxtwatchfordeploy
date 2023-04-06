@@ -1,0 +1,23 @@
+.header-logo {
+  width: 110px;
+}
+.profile-photo {
+  width: 40px;
+  padding-right: 25px;
+  padding-top: 10px;
+}
+.header-main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: fixed;
+  top: 0;
+  left: 50px;
+  right: 50px;
+  background-color: white;
+}
+.profile-and-logout-button-container {
+  display: flex;
+  align-items: center;
+}

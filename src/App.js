@@ -1,24 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Route, Routes } from "react-router";
+import "./App.css";
+// import Trending from "./components/Trending";
+import VideoItemDetails from "./components/VideoItemDetails";
+import Home from "./components/Home";
+// import LoginForm from "./components/LoginForm";
+// import Header from "./components/Header";
+// import Links from "./components/Links";
+import VideosContext from "./context/VideosContext";
+import { useState } from "react";
 function App() {
+  const [likedVideos, setLikedVideos] = useState([]);
+  const [unlikedVideos, setUnlikedVideos] = useState([]);
+  const addToLikedVideos = (likedVideo) => {
+    setLikedVideos((prevState) => {
+      const index = prevState.findIndex((each) => {
+        if (each.id === likedVideo.id) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      if (index !== -1) {
+        return prevState;
+      } else {
+        return [...prevState, likedVideo];
+      }
+    });
+  };
+
+  const removeFromLikedVideos = (likedVideo) => {
+    setLikedVideos((prevState) => {
+      const index = prevState.findIndex((each) => {
+        if (each.id === likedVideo.id) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      if (index !== -1) {
+        prevState.splice(index, 1);
+        return [...prevState];
+      } else {
+        return prevState;
+      }
+    });
+  };
+  console.log(likedVideos);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <VideosContext.Provider
+      value={{
+        likedVideos,
+        unlikedVideos,
+        addToLikedVideos,
+        removeFromLikedVideos,
+      }}
+    >
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Videos/:id" element={<VideoItemDetails />} />
+      </Routes>
+    </VideosContext.Provider>
   );
 }
 
